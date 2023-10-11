@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Speech Recognition</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <button id="recognize-button">Команда</button>
+    <div id="speech-text"></div>
+    <div id="response"></div>
+    <script>
+        $(document).ready(function () {
+            $('#recognize-button').click(function () {
+                $('#response').text("Слушаю...");
+                $('#speech-text').text(""); // Clear previous speech text
+                $.ajax({
+                    type: 'POST',
+                    url: '/recognize',
+                    success: function (data) {
+                        $('#speech-text').text("Ваше сообщение: " + data.speech_text);
+                        $('#response').text(data.message);
+                    },
+                    error: function () {
+                        $('#response').text("Ошибка. Повторите попытку");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
