@@ -120,11 +120,14 @@ car_commands = {
     "закрой багажник": trunk("close"),
     "закрыть багажник": trunk("close"),
     "настрой сиденье и зеркала для владимира": automatic_seat_mirror(),
+    "настрой сиденья и зеркала для владимира": automatic_seat_mirror(),
     "настройка сиденья и зеркал для владимира": automatic_seat_mirror(),
     "настроить сиденье и зеркала для владимира": automatic_seat_mirror(),
+    "настроить сиденья и зеркала для владимира": automatic_seat_mirror()
 }
 
-app = Flask(__name__)
+
+app = Flask(__name__, static_url_path='/static')
 
 
 @app.route('/')
