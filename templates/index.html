@@ -2,14 +2,34 @@
 <html>
 
 <head>
-    <title>Speech Recognition</title>
+    <title>Атом</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo-atom.png') }}" type="image/png">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Play&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <button id="recognize-button">Команда</button>
-    <div id="speech-text"></div>
-    <div id="response"></div>
+    <div class="container">
+        <div class="text">
+            <h1>Инновационное управление <br> инновационным автомобилем</h1>
+        </div>
+        <div class="button-container">
+            <div class="svg-button" id="recognize-button"></div>
+        </div>
+    </div>
+    <div class="result">
+        
+        <div id="speech-text"></div>
+        <div id="response"></div>     
+    </div>
+    <div class="car">
+        <img src="{{ url_for('static', filename='car.svg') }}" alt="">
+    </div>
+    
     <script>
         $(document).ready(function () {
             $('#recognize-button').click(function () {
