@@ -6,6 +6,17 @@ body {
     flex-direction: column;
 }
 
+select {
+    margin-top: 2%;
+    background-color: #62d8dee8;
+    border-radius: 0.3cm;
+}
+
+select option:checked,
+select option:hover {
+    box-shadow: 0 0 10px 100px #000 inset;
+}
+
 .container {
     text-align: center;
     margin-top: 10px;
@@ -13,6 +24,7 @@ body {
 
 .text {
     font-size: 25px;
+    text-align: center;
     font-family: Play;
     font-weight: 400;
     letter-spacing: 1.5px;
@@ -25,13 +37,16 @@ body {
 }
 
 .result {
-    margin-top: 5%;
     text-align: center;
     justify-content: center;
     color: #FFFFFF;
     font-size: 20px;
     font-family: Play;
     font-weight: 400;
+}
+
+#speech-text{
+    margin-top: 2%;
 }
 
 .button-container {
