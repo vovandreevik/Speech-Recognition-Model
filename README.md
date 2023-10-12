@@ -9,7 +9,7 @@ speech-recognition-model - это веб-приложение, которое п
 - [Установка](#установка)
 - [Использование](#использование)
 - [Используемые технологии](#используемые-технологии)
-- [API](#api)
+- [Документация API](#api)
 
 ## Особенности
 
@@ -61,6 +61,7 @@ python app.py
 - HTML, CSS и JavaScript: Для веб-интерфейса.
 - jQuery: Для обработки AJAX-запросов и манипуляции DOM.
 
-## API 
-[API.docx](https://github.com/vovandreevik/speech-recognition-model/files/12880015/API.docx)
+## Документация API 
+
+[API.docx](https://github.com/vovandreevik/speech-recognition-model/files/12882311/API.docx)
 
