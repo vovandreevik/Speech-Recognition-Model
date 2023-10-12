@@ -61,7 +61,14 @@ python app.py
 - HTML, CSS и JavaScript: Для веб-интерфейса.
 - jQuery: Для обработки AJAX-запросов и манипуляции DOM.
 
-## Документация API 
+## Документация API
 
-[API.docx](https://github.com/vovandreevik/speech-recognition-model/files/12882927/API.docx)
+- Документация [API.docx](https://github.com/vovandreevik/speech-recognition-model/files/12882927/API.docx)
 
+- Старотовое окно
+  
+![photo_2023-10-12_18-58-47](https://github.com/vovandreevik/speech-recognition-model/assets/116523390/24663fe6-ea0c-4ba3-a622-74b5607bbef0)
+
+- Обработка запроса
+  
+![photo_2023-10-12_18-58-57](https://github.com/vovandreevik/speech-recognition-model/assets/116523390/e7758043-ad7c-4107-a0aa-694e9e13e33f)
