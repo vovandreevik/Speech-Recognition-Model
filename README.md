@@ -63,5 +63,5 @@ python app.py
 
 ## Документация API 
 
-[API.docx](https://github.com/vovandreevik/speech-recognition-model/files/12882311/API.docx)
+[API.docx](https://github.com/vovandreevik/speech-recognition-model/files/12882927/API.docx)
 
