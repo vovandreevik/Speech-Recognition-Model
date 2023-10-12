@@ -17,29 +17,37 @@
         <div class="text">
             <h1>Инновационное управление <br> инновационным автомобилем</h1>
         </div>
+        <label for="select" class="text" id="select-label">Где Вы находитесь? </label>
+        <br>
+        <select id="select" class="text">
+            <option value="inside" class="option-style">Внутри автомобиля</option>
+            <option value="outside"class="option-style">Рядом с автомобилем</option>
+            <option value="far"class="option-style">Далеко от автомобиля</option>
+        </select>
+    </div>
+    <div class="result">
         <div class="button-container">
             <div class="svg-button" id="recognize-button"></div>
         </div>
-    </div>
-    <div class="result">
-        
         <div id="speech-text"></div>
-        <div id="response"></div>     
+        <div id="response"></div>
     </div>
     <div class="car">
         <img src="{{ url_for('static', filename='car.svg') }}" alt="">
     </div>
-    
+
     <script>
         $(document).ready(function () {
             $('#recognize-button').click(function () {
+                var selectedValue = $('#select').val(); // Get the selected value
                 $('#response').text("Слушаю...");
                 $('#speech-text').text(""); // Clear previous speech text
                 $.ajax({
                     type: 'POST',
                     url: '/recognize',
+                    data: { location: selectedValue }, // Send the selected value as 'location'
                     success: function (data) {
-                        $('#speech-text').text("Ваше сообщение: " + data.speech_text);
+                        $('#speech-text').text(data.speech_text);
                         $('#response').text(data.message);
                     },
                     error: function () {
