@@ -1,12 +1,12 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import speech_recognition as sr
 
 
 def launch_car(action):
     if action == "on":
-        return "автомобиль запущен"
+        return "двигатель запущен"
     elif action == "off":
-        return "автомобиль заглушен"
+        return "двигатель заглушен"
     else:
         return "недопустимая команда"
 
@@ -96,6 +96,7 @@ car_commands = {
     "выключить сигнализацию": signaling("off"),
     "выключи сигнализацию": signaling("off"),
     "запустить двигатель": launch_car("on"),
+    "завести двигатель": launch_car("on"),
     "запусти двигатель": launch_car("on"),
     "заглушить двигатель": launch_car("off"),
     "заглуши двигатель": launch_car("off"),
@@ -127,6 +128,35 @@ car_commands = {
 }
 
 
+def is_command_allowed(selected_location, command):
+    # Define a dictionary that maps allowed commands to locations
+    allowed_commands = {
+        "inside": ["открыть автомобиль","завести двигатель","открой автомобиль","закрыть автомобиль","закрой автомобиль",
+    "включить сигнализацию","включи сигнализацию","выключить сигнализацию","выключи сигнализацию",
+    "запустить двигатель","запусти двигатель","заглушить двигатель","заглуши двигатель","пробег",
+    "запас хода","включить подогрев сидений","включи подогрев сидений","выключить подогрев сидений",
+    "выключи подогрев сидений","увеличить громкость","увеличь громкость","уменьшить громкость","уменьши громкость",
+    "включить подогрев руля","включи подогрев руля","выключить подогрев руля","выключи подогрев руля",
+    "принять звонок","отклонить звонок","открой багажник","открыть багажник",
+    "закрой багажник","закрыть багажник","настрой сиденье и зеркала для владимира",
+    "настрой сиденья и зеркала для владимира","настройка сиденья и зеркал для владимира",
+    "настроить сиденье и зеркала для владимира","настроить сиденья и зеркала для владимира"],
+        "outside": ["открыть автомобиль","открой автомобиль","закрыть автомобиль","закрой автомобиль",
+    "включить сигнализацию","включи сигнализацию","выключить сигнализацию","выключи сигнализацию",
+    "запустить двигатель","запусти двигатель","заглушить двигатель","заглуши двигатель","пробег",
+    "запас хода","включить подогрев сидений","включи подогрев сидений","выключить подогрев сидений",
+    "выключи подогрев сидений", "включить подогрев руля","включи подогрев руля","выключить подогрев руля",
+    "выключи подогрев руля", "открой багажник","открыть багажник","закрой багажник","закрыть багажник"],
+        "far": ["включить сигнализацию","включи сигнализацию","выключить сигнализацию","выключи сигнализацию",
+    "пробег","запас хода"]
+    }
+
+    if command in allowed_commands.get(selected_location, []):
+        return True
+    else:
+        raise Exception("Доступ к этой команде запрещен в выбранном местоположении")
+
+
 app = Flask(__name__, static_url_path='/static')
 
 
@@ -139,6 +169,9 @@ def index():
 def recognize():
     audioCommand = sr.Recognizer()
     textCommand = ""
+    audio = None
+    selected_location = request.form.get('location')  # Get the selected value from the POST request
+
 
     with sr.Microphone() as source:
         try:
@@ -155,15 +188,23 @@ def recognize():
             return jsonify({"status": "error", "message": str(e), "speech_text": ""})
 
     if textCommand in car_commands:
-        response = {
-            "status": "success",
-            "speech_text": textCommand,  # Include the recognized speech text in the response
-            "message": car_commands[textCommand]
-        }
+        try:
+            is_command_allowed(selected_location, textCommand)
+            response = {
+                "status": "success",
+                "speech_text":"Ваше сообщение: " +  textCommand,
+                "message": car_commands[textCommand]
+            }
+        except Exception as e:
+            response = {
+                "status": "error",
+                "speech_text":"Ваше сообщение: " +  textCommand,
+                "message": str(e)
+            }
     else:
         response = {
             "status": "error",
-            "speech_text": textCommand,  # Include the recognized speech text in the response
+            "speech_text":"Ваше сообщение: " +  textCommand,
             "message": "Неизвестная программа"
         }
 
