@@ -1,8 +1,8 @@
 # speech-recognition-model
 
-ATOM.VOICE - это веб-приложение, которое позволяет пользователям управлять функциями автомобиля с помощью голосовых команд. Приложение предоставляет интерфейс для отправки голосовых команд автомобилю и обрабатывает эти команды для выполнения различных действий.
+ATOM.VOICE is a web application that allows users to control car functions using voice commands. The application provides an interface for sending voice commands to the car and processes these commands to perform various actions.
 
-## Содержание
+## Contents
 
 - [Особенности](#особенности)
 - [Необходимые компоненты](#необходимые-компоненты)
