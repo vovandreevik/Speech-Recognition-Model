@@ -2,6 +2,8 @@
 
 ATOM.VOICE is a web application that allows users to control car functions using voice commands. The application provides an interface for sending voice commands to the car and processes these commands to perform various actions.
 
+_Developed together with [gaminv](https://github.com/gaminv)_
+
 ## Contents
 
 - [Features](#features)
@@ -52,10 +54,10 @@ python app.py
 5. Say a voice command, the application will process it and provide a response.
 
 ## Used technologies
-- Flask: Микрофреймворк для веб-разработки на Python.
-- SpeechRecognition: Библиотека для распознавания речи в Python.
-- HTML, CSS и JavaScript: Для веб-интерфейса.
-- jQuery: Для обработки AJAX-запросов и манипуляции DOM.
+- Flask: A microframe for web development in Python.
+- SpeechRecognition: A library for speech recognition in Python.
+- HTML, CSS and JavaScript: For the web interface.
+- jQuery: For processing AJAX requests and DOM manipulation.
 
 ## API Documentation
 
